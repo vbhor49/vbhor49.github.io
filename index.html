@@ -21,7 +21,8 @@
 
     <script>
         
-   
+    const urlParameters = new URLSearchParams(window.location.search);
+        
     /**
      * Define the version of the Google Pay API referenced when creating your
      * configuration
@@ -138,7 +139,7 @@
       const queryString = window.location.search;
       console.log(queryString);
       const urlParams = new URLSearchParams(queryString);
-      let gpayMerchantId = urlParams.get('gpayMerchantId');
+      let gpayMerchantId = urlParameters.get('gpayMerchantId');
         
       paymentDataRequest.merchantInfo = {
         // @todo a merchant ID is available for a production environment after approval by Google
