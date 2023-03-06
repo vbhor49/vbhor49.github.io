@@ -141,6 +141,8 @@
       const urlParams = new URLSearchParams(queryString);
       let gpayMerchantId = urlParameters.get('gpayMerchantId');
         
+      let gpayMerchantName = urlParameters.get('gpayMerchantName');
+      console.log(gpayMerchantName);
       paymentDataRequest.merchantInfo = {
         // @todo a merchant ID is available for a production environment after approval by Google
         // See {@link https://developers.google.com/pay/api/web/guides/test-and-deploy/integration-checklist|Integration checklist}
