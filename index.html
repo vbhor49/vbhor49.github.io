@@ -23,6 +23,8 @@
         
     const urlParameters = new URLSearchParams(window.location.search);
         
+    var getRequestData = "";
+        
     const getGatewayName = urlParameters.get('gpayGatewayName');
     const getGatewayMerchantId = urlParameters.get('gpayGatewayId');
         
@@ -125,9 +127,9 @@
     function getRequestGpayData(jsonData){
 
         console.log('jsonData =' , jsonData);
-        var requestData = JSON.parse(jsonData);
+        getRequestData = JSON.parse(jsonData);
         
-        var countryCodeFromNative = requestData["countryCode"];
+        var countryCodeFromNative = getRequestData["countryCode"];
         console.log('countrycode =' , countryCodeFromNative);
         alert(countryCodeFromNative);
       } 
