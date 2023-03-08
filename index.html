@@ -27,7 +27,7 @@
 
         console.log('jsonData =' , jsonData);
         getRequestData = JSON.parse(jsonData);
-        alert(jsonData);
+        
     }   
     
     const urlParameters = new URLSearchParams(window.location.search);
@@ -266,9 +266,9 @@
     function getGoogleTransactionInfo() {
         
         let currencyCodeData = getRequestData['currencyCode'];
-        let countryCodeData = getRequestData["countryCode"];
+        let countryCodeData = getRequestData['countryCode'];
         let totalPriceData = getRequestData['totalPrice'];
-        
+        alert(ountryCodeData);
       return {
             displayItems: this.getDisplayItems(),
         countryCode:  countryCodeData,
