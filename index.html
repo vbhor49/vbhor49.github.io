@@ -29,15 +29,13 @@
     function getRequestGpayData(jsonData){
         console.log('jsonData =' , jsonData);
         getRequestData = JSON.parse(jsonData);
-        getGatewayName = getRequestData["gpayGatewayName"];
-        getGatewayId =  getRequestData["gpayGatewayId"];
-        
-        alert(getGatewayName);
-        alert(getGatewayId);
     }   
     
-    const urlParameters = new URLSearchParams(window.location.search);
         
+    const urlParameters = new URLSearchParams(window.location.search);
+    
+    const getGatewayName = urlParameters.get('gpayGatewayName');
+    const getGatewayId =  urlParameters.get('gpayGatewayId');
         
     /**
      * Define the version of the Google Pay API referenced when creating your
