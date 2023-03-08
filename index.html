@@ -34,8 +34,8 @@
         
     
         
-    const getGatewayName = getRequestData['gpayGatewayName'];
-    const getGatewayId = getRequestData['gpayGatewayId'];
+    const getGatewayName = getRequestData["gpayGatewayName"];
+    const getGatewayId = getRequestData["gpayGatewayId"];
         
    
         
@@ -156,8 +156,8 @@
       paymentDataRequest.allowedPaymentMethods = [cardPaymentMethod];
       paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
         
-      let gpayMerchantId = getRequestData['gpayMerchantId'];
-      let gpayMerchantName = getRequestData['gpayMerchantName'];
+      let gpayMerchantId = getRequestData["gpayMerchantId"];
+      let gpayMerchantName = getRequestData["gpayMerchantName"];
      
       paymentDataRequest.merchantInfo = {
         // @todo a merchant ID is available for a production environment after approval by Google
@@ -179,7 +179,7 @@
      */
     function getGooglePaymentsClient() {
       
-      let gpayEnvironment = getRequestData['gpayEnvironment'];
+      let gpayEnvironment = getRequestData["gpayEnvironment"];
        
       if ( paymentsClient === null ) {
         paymentsClient = new google.payments.api.PaymentsClient({
@@ -203,7 +203,7 @@
      */
     function onPaymentAuthorized(paymentData) {
         
-      let getSytemError = getRequestData['gpayGenericError'];
+      let getSytemError = getRequestData["gpayGenericError"];
         
       return new Promise(function(resolve, reject){
         // handle the response
@@ -265,9 +265,9 @@
      */
     function getGoogleTransactionInfo() {
         
-        let currencyCodeData = getRequestData['currencyCode'];
-        let countryCodeData = getRequestData['countryCode'];
-        let totalPriceData = getRequestData['totalPrice'];
+        let currencyCodeData = getRequestData["currencyCode"];
+        let countryCodeData = getRequestData["countryCode"];
+        let totalPriceData = getRequestData["totalPrice"];
         alert(countryCodeData);
       return {
             displayItems: this.getDisplayItems(),
@@ -282,9 +282,9 @@
 
     function getDisplayItems() {
         
-     let totalPriceData = getRequestData['totalPrice'];
-     let deliveryCharges = getRequestData['deliveryCharges'];
-     let voucherAmount = getRequestData['voucherAmount'];
+     let totalPriceData = getRequestData["totalPrice"];
+     let deliveryCharges = getRequestData["deliveryCharges"];
+     let voucherAmount = getRequestData["voucherAmount"];
         
      let summary = [{
       
