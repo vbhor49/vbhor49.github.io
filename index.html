@@ -124,20 +124,7 @@
      * @returns {object} Google Pay API version, payment methods supported by the site
      */
         
-        
-     function getRequestGpayData(jsonData){
-
-        console.log('jsonData =' , jsonData);
-        getRequestData = JSON.parse(jsonData);
-        alert(jsonData);
-         /**
-        getGatewayName = getRequestData["gpayGatewayName"];
-        getGatewayMerchantId = getRequestData["gpayGatewayId"];
-         **/
-    } 
-   
-        
-    function getGoogleIsReadyToPayRequest() {
+     function getGoogleIsReadyToPayRequest() {
       return Object.assign(
           {},
           baseRequest,
@@ -146,6 +133,13 @@
           }
       );
     }
+        
+    function getRequestGpayData(jsonData){
+
+        console.log('jsonData =' , jsonData);
+        getRequestData = JSON.parse(jsonData);
+        alert(jsonData);
+    }   
 
     /**
      * Configure support for the Google Pay API
