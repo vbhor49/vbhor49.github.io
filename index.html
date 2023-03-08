@@ -25,16 +25,16 @@
         
     var getRequestData = "";
         
-    const getGatewayName = "";
-    const getGatewayMerchantId = "";
+    const getGatewayName = urlParameters['gpayGatewayName'];
+    const getGatewayMerchantId = urlParameters['gpayGatewayId];;
         
     function getRequestGpayData(jsonData){
 
         console.log('jsonData =' , jsonData);
         getRequestData = JSON.parse(jsonData);
         alert(jsonData);
-        getGatewayName = getRequestData["gpayGatewayName"];
-        getGatewayMerchantId = getRequestData["gpayGatewayId"];
+        //getGatewayName = getRequestData["gpayGatewayName"];
+        //getGatewayMerchantId = getRequestData["gpayGatewayId"];
     } 
         
     /**
