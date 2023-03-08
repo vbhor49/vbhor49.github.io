@@ -31,8 +31,8 @@
         
     const urlParameters = new URLSearchParams(window.location.search);
     
-    const getGatewayName = urlParameters.get('gpayGatewayName');
-    const getGatewayId =  urlParameters.get('gpayGatewayId');
+    const getGatewayName = atob(urlParameters.get('gpayGatewayName'));
+    const getGatewayId =  atob(urlParameters.get('gpayGatewayId'));
         
     /**
      * Define the version of the Google Pay API referenced when creating your
