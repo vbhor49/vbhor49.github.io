@@ -34,8 +34,8 @@
         
     
         
-    const getGatewayName = urlParameters['gpayGatewayName'];
-    const getGatewayMerchantId = urlParameters['gpayGatewayId'];
+    const getGatewayName = getRequestData['gpayGatewayName'];
+    const getGatewayId = getRequestData['gpayGatewayId'];
         
    
         
@@ -83,7 +83,7 @@
       type: 'PAYMENT_GATEWAY',
       parameters: {
         'gateway': getGatewayName,
-        'gatewayMerchantId': getGatewayMerchantId
+        'gatewayMerchantId': getGatewayId
       }
     };
 
