@@ -20,10 +20,19 @@
 
 
     <script>
+    
+    var getRequestData = ""; 
         
+    function getRequestGpayData(jsonData){
+
+        console.log('jsonData =' , jsonData);
+        getRequestData = JSON.parse(jsonData);
+        alert(jsonData);
+    }   
+    
     const urlParameters = new URLSearchParams(window.location.search);
         
-    var getRequestData = "";
+    
         
     const getGatewayName = urlParameters['gpayGatewayName'];
     const getGatewayMerchantId = urlParameters['gpayGatewayId'];
@@ -133,14 +142,8 @@
           }
       );
     }
-     /**   
-    function getRequestGpayData(jsonData){
-
-        console.log('jsonData =' , jsonData);
-        getRequestData = JSON.parse(jsonData);
-        alert(jsonData);
-    }   
-    **/
+     
+    
 
     /**
      * Configure support for the Google Pay API
