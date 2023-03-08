@@ -265,7 +265,7 @@
     function getGoogleTransactionInfo() {
         
         let currencyCodeData = urlParameters.get('currencyCode');
-        let countryCodeData = urlParameters.get('countryCode');
+        let countryCodeData = getRequestData["countryCode"];
         let totalPriceData = urlParameters.get('totalPrice');
         
       return {
