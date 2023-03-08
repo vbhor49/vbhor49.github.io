@@ -28,14 +28,7 @@
     const getGatewayName = urlParameters['gpayGatewayName'];
     const getGatewayMerchantId = urlParameters['gpayGatewayId];;
         
-    function getRequestGpayData(jsonData){
-
-        console.log('jsonData =' , jsonData);
-        getRequestData = JSON.parse(jsonData);
-        alert(jsonData);
-        //getGatewayName = getRequestData["gpayGatewayName"];
-        //getGatewayMerchantId = getRequestData["gpayGatewayId"];
-    } 
+   
         
     /**
      * Define the version of the Google Pay API referenced when creating your
@@ -132,7 +125,16 @@
      */
         
         
-       
+     function getRequestGpayData(jsonData){
+
+        console.log('jsonData =' , jsonData);
+        getRequestData = JSON.parse(jsonData);
+        alert(jsonData);
+         /**
+        getGatewayName = getRequestData["gpayGatewayName"];
+        getGatewayMerchantId = getRequestData["gpayGatewayId"];
+         **/
+    } 
    
         
     function getGoogleIsReadyToPayRequest() {
