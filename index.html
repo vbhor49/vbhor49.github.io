@@ -32,10 +32,9 @@
     
     const urlParameters = new URLSearchParams(window.location.search);
         
-    
         
-    const getGatewayName = getRequestData["gpayGatewayName"];
-    const getGatewayId = getRequestData["gpayGatewayId"];
+    const getGatewayName = urlParameters.get('gpayGatewayName');
+    const getGatewayId = urlParameters.get('gpayGatewayId');
         
    
         
