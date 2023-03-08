@@ -31,6 +31,9 @@
         getRequestData = JSON.parse(jsonData);
         getGatewayName = getRequestData["gpayGatewayName"];
         getGatewayId =  getRequestData["gpayGatewayId"];
+        
+        alert(getGatewayName);
+        alert(getGatewayId);
     }   
     
     const urlParameters = new URLSearchParams(window.location.search);
@@ -265,7 +268,7 @@
         let currencyCodeData = getRequestData["currencyCode"];
         let countryCodeData = getRequestData["countryCode"];
         let totalPriceData = getRequestData["totalPrice"];
-        alert(countryCodeData);
+        
       return {
             displayItems: this.getDisplayItems(),
         countryCode:  countryCodeData,
