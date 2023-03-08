@@ -119,6 +119,19 @@
      *
      * @returns {object} Google Pay API version, payment methods supported by the site
      */
+        
+        
+       
+    function getRequestGpayData(jsonData){
+
+        console.log('jsonData =' , jsonData);
+        var requestData = JSON.parse(jsonData);
+        
+        var countryCodeFromNative = requestData["countryCode"];
+        console.log('countrycode =' , countryCodeFromNative);
+
+      } 
+        
     function getGoogleIsReadyToPayRequest() {
       return Object.assign(
           {},
