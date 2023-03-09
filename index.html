@@ -263,15 +263,17 @@
         let currencyCodeData = getRequestData["currencyCode"];
         let countryCodeData = getRequestData["countryCode"];
         let totalPriceData = getRequestData["totalPrice"];
+        let totalPriceLabel = getRequestData["totalPriceLabel"];
         
       return {
-            displayItems: this.getDisplayItems(),
+        displayItems: this.getDisplayItems(),
         countryCode:  countryCodeData,
         currencyCode:  currencyCodeData,
         totalPriceStatus: "FINAL",
         totalPrice: totalPriceData,
-        totalPriceLabel: "Total"
+        totalPriceLabel: totalPriceLabel
       };
+        
     }
 
 
