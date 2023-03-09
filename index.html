@@ -282,24 +282,27 @@
      let totalPriceData = getRequestData["totalPrice"];
      let deliveryCharges = getRequestData["deliveryCharges"];
      let voucherAmount = getRequestData["voucherAmount"];
+     let deliveryLabel = getRequestData["deliveryLabel"];
+     let voucherLabel = getRequestData["voucherLabel"];
+     let subTotalLabel = getRequestData["subTotalLabel"];
         
      let summary = [{
       
-     label: 'Subtotal',
+     label: subTotalLabel,
      type: 'SUBTOTAL',
      price: totalPriceData
          
      }]
      
      summary.push({
-                label: 'Delivery',
+                label: deliveryLabel,
                 type: 'SUBTOTAL',
                 price: deliveryCharges
             })
 
             if (voucherAmount > 0) {
                 summary.push({
-                    label: 'Voucher',
+                    label: voucherLabel,
                     type: 'SUBTOTAL',
                     price: '-' + voucherAmount
                 })
