@@ -274,7 +274,7 @@
          
          function getDisplayItems() {
              
-          let subTotalData = getRequestData["subTotal"];
+          let totalPriceData = getRequestData["totalPrice"];
           let deliveryCharges = getRequestData["deliveryCharges"];
           let voucherAmount = getRequestData["voucherAmount"];
           let deliveryLabel = getRequestData['deliveryLabel'];
@@ -285,7 +285,7 @@
            
           label: subTotalLabel,
           type: 'SUBTOTAL',
-          price: subTotalData
+          price: totalPriceData
               
           }]
           
