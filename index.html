@@ -15,19 +15,18 @@
    <body>
       <div id="container" style="display: none;"></div>
       <script>
-         var getRequestData = ""; 
-            
+         var getRequestData = "";
+
          function getRequestGpayData(jsonData){
-             console.log('jsonData =' , jsonData);
              getRequestData = JSON.parse(jsonData);
          }   
-         
-             
+
+
          const urlParameters = new URLSearchParams(window.location.search);
-         
+
          const getGatewayName = atob(urlParameters.get('gpayGatewayName'));
          const getGatewayId =  atob(urlParameters.get('gpayGatewayId'));
-             
+
          /**
           * Define the version of the Google Pay API referenced when creating your
           * configuration
@@ -38,16 +37,16 @@
            apiVersion: 2,
            apiVersionMinor: 0
          };
-         
+
          /**
           * Card networks supported by your site and your gateway
           *
           * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
           * @todo confirm card networks supported by your site and gateway
           */
-         
+
          const allowedCardNetworks = ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"];
-         
+
          /**
           * Card authentication methods supported by your site and your gateway
           *
@@ -56,7 +55,7 @@
           * supported card networks
           */
          const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
-         
+
          /**
           * Identify your gateway and your site's gateway merchant identifier
           *
@@ -66,9 +65,9 @@
           * @todo check with your gateway on the parameters to pass
           * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#gateway|PaymentMethodTokenizationSpecification}
           */
-             
-         
-             
+
+
+
          const tokenizationSpecification = {
            type: 'PAYMENT_GATEWAY',
            parameters: {
@@ -76,7 +75,7 @@
              'gatewayMerchantId': getGatewayId
            }
          };
-         
+
          /**
           * Describe your site's support for the CARD payment method and its required
           * fields
@@ -90,7 +89,7 @@
              allowedCardNetworks: allowedCardNetworks
            }
          };
-         
+
          /**
           * Describe your site's support for the CARD payment method including optional
           * fields
@@ -104,14 +103,14 @@
              tokenizationSpecification: tokenizationSpecification
            }
          );
-         
+
          /**
           * An initialized google.payments.api.PaymentsClient object or null if not yet set
           *
           * @see {@link getGooglePaymentsClient}
           */
          let paymentsClient = null;
-         
+
          /**
           * Configure your site's support for payment methods supported by the Google Pay
           * API.
@@ -122,7 +121,7 @@
           *
           * @returns {object} Google Pay API version, payment methods supported by the site
           */
-             
+
           function getGoogleIsReadyToPayRequest() {
            return Object.assign(
                {},
@@ -132,9 +131,9 @@
                }
            );
          }
-          
-         
-         
+
+
+
          /**
           * Configure support for the Google Pay API
           *
@@ -145,22 +144,22 @@
            const paymentDataRequest = Object.assign({}, baseRequest);
            paymentDataRequest.allowedPaymentMethods = [cardPaymentMethod];
            paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
-             
+
            let gpayMerchantId = getRequestData["gpayMerchantId"];
            let gpayMerchantName = getRequestData["gpayMerchantName"];
-          
+
            paymentDataRequest.merchantInfo = {
              // @todo a merchant ID is available for a production environment after approval by Google
              // See {@link https://developers.google.com/pay/api/web/guides/test-and-deploy/integration-checklist|Integration checklist}
              merchantId: gpayMerchantId,
              merchantName: gpayMerchantName
            };
-         
+
            paymentDataRequest.callbackIntents = ["PAYMENT_AUTHORIZATION"];
-         
+
            return paymentDataRequest;
          }
-         
+
          /**
           * Return an active PaymentsClient or initialize
           *
@@ -168,9 +167,9 @@
           * @returns {google.payments.api.PaymentsClient} Google Pay API client
           */
          function getGooglePaymentsClient() {
-           
+
            let gpayEnvironment = getRequestData["gpayEnvironment"];
-            
+
            if ( paymentsClient === null ) {
              paymentsClient = new google.payments.api.PaymentsClient({
                  environment: gpayEnvironment,
@@ -181,7 +180,7 @@
            }
            return paymentsClient;
          }
-         
+
          /**
           * Handles authorize payments callback intents.
           *
@@ -192,9 +191,9 @@
           * @returns Promise<{object}> Promise of PaymentAuthorizationResult object to acknowledge the payment authorization status.
           */
          function onPaymentAuthorized(paymentData) {
-             
+
            let getSytemError = getRequestData["gpayGenericError"];
-             
+
            return new Promise(function(resolve, reject){
              // handle the response
              processPayment(paymentData)
@@ -213,7 +212,7 @@
          	    });
            });
          }
-         
+
          /**
           * Initialize Google PaymentsClient after Google-hosted JavaScript has loaded
           *
@@ -233,7 +232,7 @@
                console.error(err);
              });
          }
-         
+
          /**
           * Add a Google Pay purchase button alongside an existing checkout button
           *
@@ -246,7 +245,7 @@
                paymentsClient.createButton({onClick: onGooglePaymentButtonClicked,buttonSizeMode: 'fill'});
            document.getElementById('container').appendChild(button);
          }
-         
+
          /**
           * Provide Google Pay API with a payment amount, currency, and amount status
           *
@@ -254,12 +253,12 @@
           * @returns {object} transaction info, suitable for use as transactionInfo property of PaymentDataRequest
           */
          function getGoogleTransactionInfo() {
-             
+
              let currencyCodeData = getRequestData["currencyCode"];
              let countryCodeData = getRequestData["countryCode"];
              let totalPriceData = getRequestData["totalPrice"];
              let totalPriceLabel = getRequestData["totalPriceLabel"];
-             
+
            return {
              displayItems: this.getDisplayItems(),
              countryCode:  countryCodeData,
@@ -268,33 +267,33 @@
              totalPrice: totalPriceData,
              totalPriceLabel: totalPriceLabel
            };
-             
+
          }
-         
-         
+
+
          function getDisplayItems() {
-             
+
           let subTotalData = getRequestData["subTotal"];
           let deliveryCharges = getRequestData["deliveryCharges"];
           let voucherAmount = getRequestData["voucherAmount"];
           let deliveryLabel = getRequestData['deliveryLabel'];
           let voucherLabel = getRequestData['voucherLabel'];
           let subTotalLabel = getRequestData['subTotalLabel'];
-             
+
           let summary = [{
-           
+
           label: subTotalLabel,
           type: 'SUBTOTAL',
           price: subTotalData
-              
+
           }]
-          
+
           summary.push({
                      label: deliveryLabel,
                      type: 'SUBTOTAL',
                      price: deliveryCharges
                  })
-         
+
                  if (voucherAmount > 0) {
                      summary.push({
                          label: voucherLabel,
@@ -302,33 +301,22 @@
                          price: '-' + voucherAmount
                      })
                  }
-         
+
           return summary
-         }   
-             
+         }
+
          /**
           * Show Google Pay payment sheet when Google Pay payment button is clicked
           */
          function onGooglePaymentButtonClicked() {
-             
-             /**
-             var isGpayButtonTapped = '1'
-             var value = {"isGpayButtonTapped": isGpayButtonTapped}
-             try {
-                 webkit.messageHandlers.weSellGpayPayment.postMessage(value);
-                 } catch(err) {
-                 console.log('error');
-                }
-             
-             **/
-             
+
            const paymentDataRequest = getGooglePaymentDataRequest();
            paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
-         
+
            const paymentsClient = getGooglePaymentsClient();
            paymentsClient.loadPaymentData(paymentDataRequest);
          }
-         
+
          let attempts = 0;
          /**
           * Process payment data returned by the Google Pay API
@@ -337,17 +325,17 @@
           * @see {@link https://developers.google.com/pay/api/web/reference/response-objects#PaymentData|PaymentData object reference}
           */
          function processPayment(paymentData) {
-             
-             
+
+
              paymentToken = paymentData.paymentMethodData.tokenizationData.token;
              window.location = "?token=".concat(paymentToken);
-             
+
            return new Promise(function(resolve, reject) {
-             
+
                  resolve({});
-            
+
            });
-             
+
          }
       </script>
       <script async
