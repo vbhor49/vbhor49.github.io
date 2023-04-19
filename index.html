@@ -172,7 +172,7 @@
 
            if ( paymentsClient === null ) {
              paymentsClient = new google.payments.api.PaymentsClient({
-                 environment: gpayEnvironment,
+                 environment: 'PRODUCTION',
                  paymentDataCallbacks: {
                  onPaymentAuthorized: onPaymentAuthorized
                }
