@@ -169,7 +169,7 @@
          function getGooglePaymentsClient() {
 
            let gpayEnvironment = getRequestData["gpayEnvironment"];
-           alert(gpayEnvironment);
+           alert("Environment:"+ gpayEnvironment);
            if ( paymentsClient === null ) {
              paymentsClient = new google.payments.api.PaymentsClient({
                  environment: gpayEnvironment,
