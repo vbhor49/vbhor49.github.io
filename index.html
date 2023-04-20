@@ -228,7 +228,7 @@
           */
          function onGooglePayLoaded() {
            const paymentsClient = getGooglePaymentsClient();
-            alert("onGooglePayLoaded paymentsClient :"+ paymentsClient);
+            alert("onGooglePayLoaded paymentsClient :"+ JSON.stringify(paymentsClient));
            paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
              .then(function(response) {
                if (response.result) {
@@ -249,7 +249,7 @@
           */
          function addGooglePayButton() {
            const paymentsClient = getGooglePaymentsClient();
-            alert("addGooglePayButton paymentsClient :"+ paymentsClient);
+            alert("addGooglePayButton paymentsClient :"+ JSON.stringify(paymentsClient));
            const button =
                paymentsClient.createButton({onClick: onGooglePaymentButtonClicked,buttonSizeMode: 'fill'});
            document.getElementById('container').appendChild(button);
@@ -327,7 +327,7 @@
            paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
 
            const paymentsClient = getGooglePaymentsClient();
-           alert("clicked button with  data request:"+ paymentDataRequest.transactionInfo + "\n" + paymentsClient);
+           alert("clicked button with  data request:"+ JSON.stringify( paymentDataRequest.transactionInfo) + "\n" + JSON.stringify(paymentsClient));
            paymentsClient.loadPaymentData(paymentDataRequest);
          }
 
