@@ -19,7 +19,7 @@
 
          function getRequestGpayData(jsonData){
              getRequestData = JSON.parse(jsonData);
-             alert("JSON Data:"+ jsonData);
+             
          }   
 
 
@@ -149,8 +149,7 @@
 
            let gpayMerchantId = getRequestData["gpayMerchantId"];
            let gpayMerchantName = getRequestData["gpayMerchantName"];
-            alert("MerchantId:"+ gpayMerchantId);
-            alert("MerchantName:"+ gpayMerchantName);
+            
            paymentDataRequest.merchantInfo = {
              // @todo a merchant ID is available for a production environment after approval by Google
              // See {@link https://developers.google.com/pay/api/web/guides/test-and-deploy/integration-checklist|Integration checklist}
@@ -170,13 +169,7 @@
           * @returns {google.payments.api.PaymentsClient} Google Pay API client
           */
          function getGooglePaymentsClient() {
-           /*
-           let gpayEnvironment = getRequestData["gpayEnvironment"];
-           alert("getRequestData on getGooglePaymentsClient:"+ JSON.stringify(getRequestData));
-           alert("Environment:"+ gpayEnvironment);
-            */
-           alert("Constant Environment:"+ getEnvironment);
-           alert("Constant GatewayName:"+getGatewayName);
+         
             
            if ( paymentsClient === null ) {
              paymentsClient = new google.payments.api.PaymentsClient({
@@ -201,7 +194,7 @@
          function onPaymentAuthorized(paymentData) {
 
            let getSytemError = getRequestData["gpayGenericError"];
-           alert(getSytemError);
+           
            return new Promise(function(resolve, reject){
              // handle the response
              processPayment(paymentData)
@@ -268,10 +261,7 @@
              let countryCodeData = getRequestData["countryCode"];
              let totalPriceData = getRequestData["totalPrice"];
              let totalPriceLabel = getRequestData["totalPriceLabel"];
-              alert("currencyCode:"+ currencyCodeData);
-              alert("countryCode:"+ countryCodeData);
-              alert("totalPrice:"+ totalPriceData);
-              alert("totalPriceLabel:"+ totalPriceLabel);
+            
              
            return {
              displayItems: this.getDisplayItems(),
@@ -328,7 +318,7 @@
            paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
 
            const paymentsClient = getGooglePaymentsClient();
-           //alert("clicked button with  data request:"+ JSON.stringify( paymentDataRequest.transactionInfo) + "\n" + JSON.stringify(paymentsClient));
+           
            paymentsClient.loadPaymentData(paymentDataRequest);
          }
 
