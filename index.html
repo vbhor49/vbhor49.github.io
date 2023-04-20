@@ -323,7 +323,7 @@
            paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
 
            const paymentsClient = getGooglePaymentsClient();
-           alert("clicked button with  data request:"+ paymentDataRequest + "\n" + paymentsClient);
+           alert("clicked button with  data request:"+ paymentDataRequest.transactionInfo + "\n" + paymentsClient);
            paymentsClient.loadPaymentData(paymentDataRequest);
          }
 
