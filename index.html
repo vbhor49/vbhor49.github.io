@@ -27,7 +27,7 @@
 
          const getGatewayName = atob(urlParameters.get('gpayGatewayName'));
          const getGatewayId =  atob(urlParameters.get('gpayGatewayId'));
-
+         const getEnvironment = urlParameters.get('gpayEnvironment');
          /**
           * Define the version of the Google Pay API referenced when creating your
           * configuration
@@ -173,6 +173,9 @@
            let gpayEnvironment = getRequestData["gpayEnvironment"];
            alert("getRequestData on getGooglePaymentsClient:"+ JSON.stringify(getRequestData));
            alert("Environment:"+ gpayEnvironment);
+           alert("Constant Environment:"+ getEnvironment);
+            
+           alert
            if ( paymentsClient === null ) {
              paymentsClient = new google.payments.api.PaymentsClient({
                  environment: gpayEnvironment,
