@@ -169,10 +169,10 @@
          function getGooglePaymentsClient() {
 
            let gpayEnvironment = getRequestData["gpayEnvironment"];
-
+           alert(gpayEnvironment);
            if ( paymentsClient === null ) {
              paymentsClient = new google.payments.api.PaymentsClient({
-                 environment: 'PRODUCTION',
+                 environment: gpayEnvironment,
                  paymentDataCallbacks: {
                  onPaymentAuthorized: onPaymentAuthorized
                }
@@ -193,7 +193,7 @@
          function onPaymentAuthorized(paymentData) {
 
            let getSytemError = getRequestData["gpayGenericError"];
-
+           alert(getSytemError);
            return new Promise(function(resolve, reject){
              // handle the response
              processPayment(paymentData)
@@ -258,7 +258,10 @@
              let countryCodeData = getRequestData["countryCode"];
              let totalPriceData = getRequestData["totalPrice"];
              let totalPriceLabel = getRequestData["totalPriceLabel"];
-
+              alert(currencyCodeData);
+              alert(countryCodeData);
+              alert(totalPriceData);
+              alert(totalPriceLabel);
            return {
              displayItems: this.getDisplayItems(),
              countryCode:  countryCodeData,
