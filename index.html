@@ -169,16 +169,17 @@
           * @returns {google.payments.api.PaymentsClient} Google Pay API client
           */
          function getGooglePaymentsClient() {
-
+           /*
            let gpayEnvironment = getRequestData["gpayEnvironment"];
            alert("getRequestData on getGooglePaymentsClient:"+ JSON.stringify(getRequestData));
            alert("Environment:"+ gpayEnvironment);
+            */
            alert("Constant Environment:"+ getEnvironment);
            alert("Constant GatewayName:"+getGatewayName);
             
            if ( paymentsClient === null ) {
              paymentsClient = new google.payments.api.PaymentsClient({
-                 environment: gpayEnvironment,
+                 environment: getEnvironment,
                  paymentDataCallbacks: {
                  onPaymentAuthorized: onPaymentAuthorized
                }
