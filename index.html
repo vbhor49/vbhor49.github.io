@@ -27,7 +27,8 @@
 
          const getGatewayName = atob(urlParameters.get('gpayGatewayName'));
          const getGatewayId =  atob(urlParameters.get('gpayGatewayId'));
-         const getEnvironment = urlParameters.get('gpayEnvironment');
+         const getEnvironment = atob(urlParameters.get('gpayEnvironment'));
+         
          /**
           * Define the version of the Google Pay API referenced when creating your
           * configuration
